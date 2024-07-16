@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E Commerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>My Store</h1>
+        <div>
+            <input placeholder="Search for Products"/>
+           <select id="CatgorySelect">
+            <option>All Categories</option>
+           </select>
+            <input placeholder="Min Price" type="number" min="10"/>
+            <input placeholder="Max Price" type="number" min="10"/>
+            <button class="btnFilter" onclick="FilterData()">Apply Filters</button>
+            <div>
+            <select id="PriceSelect">
+                <option>Sort by price</option>
+               </select>
+            </div>
+        </div>
+    </div>
+    <div class="flex-container" id="container">
+       <!-- data of apis here -->
+      </div>
+  <!-- pagination -->
+   <div class="container">
+      <div class="flex-container">
+        <button class="btnPagination">Previous</button>
+      <div class="number" onclick="getData(1)">1</div>
+      <div class="number" onclick="getData(2)">2</div>
+      <div class="number"  onclick="getData(3)">3</div>
+      <div class="number"  onclick="getData(4)">4</div>
+      <div class="number"  onclick="getData(5)">5</div>
+      <button class="btnPagination">Next</button>
+    </div>
+       </div>
+    <script src="script.js"></script>
+</body>
+</html>
