@@ -1,9 +1,9 @@
-var result;
+var data;
 async function  getData(page){
     const url=`https://fakestoreapi.com/products`;
     var respnose=await fetch(url);
-    const data=await respnose.json();
-     result=data;
+     data=await respnose.json();
+    var result=data;
    // console.log(result);
       if(page ==1)
       { 
@@ -33,23 +33,7 @@ async function  getData(page){
           document.getElementById('container').innerHTML = "";
           result="No Data Found";
         }
-   result.map(card=> {
-        var cardDiv = document.createElement('div');
-        cardDiv.className = "card";
-        var priceOption = document.createElement('option');
-        priceOption.innerHTML=` ${card.price}`;
-        cardDiv.innerHTML = `
-       <img src="${card.image}"/>
-            <h3>${card.title}</h3>
-            <p>${card.price}</p>
-            <div>
-             <button class="btn">View Details</button>
-             <button class="btn">Add to Cart</button>
-            </div>
-                      `
-        document.getElementById('container').appendChild(cardDiv);
-        document.getElementById('PriceSelect').appendChild(priceOption);
-      })
+        DisplayData(result);
        
 }getData(1);
 async function getCategoryData(){
@@ -65,13 +49,63 @@ async function getCategoryData(){
           })
 }
 getCategoryData();
-async function FilterData(){
-  var menu = document.getElementById('CatgorySelect');
+function DisplayData(result){
+  document.getElementById('container').innerHTML = "";
+  result.map(card=> {
+    var cardDiv = document.createElement('div');
+    cardDiv.className = "card";
+    var priceOption = document.createElement('option');
+    priceOption.innerHTML=` ${card.price}`;
+    cardDiv.innerHTML = `
+   <img src="${card.image}"/>
+        <h3>${card.title}</h3>
+        <p>${card.price}</p>
+        <div>
+         <button class="btn">View Details</button>
+         <button class="btn">Add to Cart</button>
+        </div>
+                  `
+    document.getElementById('container').appendChild(cardDiv);
+    document.getElementById('PriceSelect').appendChild(priceOption);
+  })
+}
+async function filterByCategory(){
+    var menu = document.getElementById('CatgorySelect');
   var text = menu.options[menu.selectedIndex].text;
-
-   var arr= result.filter((eventData)=> {
+     var arr= data.filter((eventData)=> {
      if(eventData.category.toLowerCase()==text)
      {return eventData;}
     });
     console.log(arr)
+    DisplayData(arr);
 }
+async function filterByMinPrice(){
+  var minPrice =parseInt(document.getElementById('minPrice').value);
+  alert(typeof(minPrice))
+   var filterArr= data.filter((FilterdData)=> {
+    var number=parseInt(data.price);
+   if(parseInt(number) > minPrice);
+   {return FilterdData;}
+  });
+  console.log(filterArr)
+  DisplayData(filterArr);
+}
+
+async function filterByMaxPrice(){
+  var menu = document.getElementById('CatgorySelect');
+var text = menu.options[menu.selectedIndex].text;
+   var arr= data.filter((eventData)=> {
+   if(eventData.category.toLowerCase()==text)
+   {return eventData;}
+  });
+  console.log(arr)
+  DisplayData(arr);
+}
+
+// async function drawPagination(){}
+// async function filterData(){}
+// async function getData(){}
+// async function addToCart(){}
+// function getAllCategories(){}
+// function getMinPrice(){}
+// function getMaxPrice(){}

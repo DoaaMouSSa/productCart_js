@@ -14,9 +14,9 @@
            <select id="CatgorySelect">
             <option>All Categories</option>
            </select>
-            <input placeholder="Min Price" type="number" min="10"/>
-            <input placeholder="Max Price" type="number" min="10"/>
-            <button class="btnFilter" onclick="FilterData()">Apply Filters</button>
+            <input placeholder="Min Price" type="number" min="10" value="10" id="minPrice"/>
+            <input placeholder="Max Price" type="number" min="10" value="10" id="maxPrice"/>
+            <button class="btnFilter" onclick="filterByMinPrice();">Apply Filters</button>
             <div>
             <select id="PriceSelect">
                 <option>Sort by price</option>
